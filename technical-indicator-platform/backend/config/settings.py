@@ -1,3 +1,5 @@
+# config/settings.py - ADD these lines to your existing settings
+
 import os
 from pathlib import Path
 
@@ -71,7 +73,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://192.168.94.131:3000",  # Add this for your Raspberry Pi
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # For development only - remove in production
 
 # REST Framework settings
 REST_FRAMEWORK = {
@@ -80,4 +85,49 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100
+}
+
+# ADD THESE NEW SETTINGS FOR RATE LIMITING MANAGEMENT
+
+# Logging configuration to see what's happening
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'stocks': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'yfinance': {
+            'handlers': ['console'],
+            'level': 'WARNING',  # Reduce yfinance noise
+            'propagate': True,
+        },
+    },
+}
+
+# Cache configuration to reduce API calls
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 300,  # 5 minutes
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        }
+    }
+}
+
+# Custom settings for stock data management
+STOCK_DATA_SETTINGS = {
+    'CACHE_TIMEOUT': 300,  # 5 minutes
+    'RATE_LIMIT_DELAY': 1,  # Minimum seconds between API calls
+    'MAX_RETRIES': 3,
+    'RETRY_DELAY': 2,  # Base delay for retries
 }
