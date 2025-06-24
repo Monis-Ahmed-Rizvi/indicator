@@ -1,0 +1,512 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.disclaimer {
+  background-color: #f39c12;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Main Layout */
+.app-main {
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.config-section {
+  flex: 0 0 350px;
+}
+
+.results-section {
+  flex: 1;
+}
+
+/* Configuration Panel */
+.config-panel {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.config-panel h2 {
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+}
+
+/* Stock Search */
+.stock-search {
+  margin-bottom: 2rem;
+}
+
+.stock-search h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.stock-search form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.stock-search input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.stock-search button {
+  padding: 0.75rem 1.5rem;
+  background-color: #0f3460;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.stock-search button:hover:not(:disabled) {
+  background-color: #16213e;
+}
+
+.stock-search button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.selected-stock {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.selected-stock h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: #0f3460;
+}
+
+.selected-stock .sector {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Date Range Picker */
+.date-range-picker {
+  margin-bottom: 2rem;
+}
+
+.date-range-picker h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.preset-buttons button {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.preset-buttons button:hover {
+  background-color: #d0d0d0;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 1rem;
+}
+
+.date-inputs > div {
+  flex: 1;
+}
+
+.date-inputs label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.date-inputs input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Indicator Selector */
+.indicator-selector {
+  margin-bottom: 2rem;
+}
+
+.indicator-selector h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.indicator-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.indicator-item label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0.75rem;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.indicator-item label:hover {
+  background-color: #f0f0f0;
+}
+
+.indicator-item input[type="checkbox"] {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.indicator-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.indicator-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.indicator-category {
+  font-size: 0.8rem;
+  color: #666;
+  background-color: #e0e0e0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  align-self: flex-start;
+}
+
+.indicator-description {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Analyze Button */
+.analyze-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #e94560;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.analyze-button:hover:not(:disabled) {
+  background-color: #d63550;
+}
+
+.analyze-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Results Dashboard */
+.results-dashboard {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.results-dashboard h2 {
+  margin-bottom: 2rem;
+  color: #1a1a2e;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.summary-card {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+.summary-card h3 {
+  margin-bottom: 1rem;
+  color: #0f3460;
+  font-size: 1.1rem;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.metric .label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.metric .value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.metric .value.positive {
+  color: #27ae60;
+}
+
+.metric .value.negative {
+  color: #e74c3c;
+}
+
+/* Comparison Table */
+.comparison-table {
+  margin-bottom: 3rem;
+}
+
+.comparison-table h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comparison-table th {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.comparison-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.comparison-table th.sortable:hover {
+  background-color: #e8e8e8;
+}
+
+.comparison-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-table tr:hover {
+  background-color: #f8f8f8;
+}
+
+.comparison-table .positive {
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.comparison-table .negative {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* Chart Container */
+.chart-container {
+  margin-top: 2rem;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chart-controls button {
+  padding: 0.75rem 1.5rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chart-controls button:hover {
+  background-color: #d0d0d0;
+}
+
+.chart-controls button.active {
+  background-color: #0f3460;
+  color: white;
+}
+
+.chart-wrapper {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.app-footer {
+  background-color: #1a1a2e;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .app-main {
+    flex-direction: column;
+  }
+  
+  .config-section {
+    flex: 1;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .date-inputs {
+    flex-direction: column;
+  }
+  
+  .preset-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .comparison-table {
+    overflow-x: auto;
+  }
+  
+  .comparison-table table {
+    min-width: 600px;
+  }
+}
+
+/* Loading States */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0f3460;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error States */
+.error {
+  background-color: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  border: 1px solid #fcc;
+}
+
+/* Success States */
+.success {
+  background-color: #efe;
+  color: #3c3;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  border: 1px solid #cfc;
+}

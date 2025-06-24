@@ -1,0 +1,1 @@
+# URLs are configured in api/urls.py
