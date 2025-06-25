@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.94.131']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.94.131','indicators.toolzoftrade.com','.toolzoftrade.com',]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -73,10 +73,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://192.168.94.131:3000",  # Add this for your Raspberry Pi
+    "http://192.168.94.131:3000",
+    "https://indicators.toolzoftrade.com",
+    "http://indicators.toolzoftrade.com",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # For development only - remove in production
+CORS_ALLOW_ALL_ORIGINS = True
 
 # REST Framework settings
 REST_FRAMEWORK = {
